@@ -9,6 +9,8 @@ export const authUser = async (req, res, next) => {
         //     return res.status(401).json({ message: "Authentication required" });
         // }
         const {Authorization} = req.headers
+        console.log("Authorization",Authorization);
+        
         if(!Authorization){
             return res.status(401).json({message:"You must have logged in"})
         }
