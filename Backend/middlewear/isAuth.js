@@ -3,11 +3,16 @@ import jwt from 'jsonwebtoken';
 export const authUser = async (req, res, next) => {
     try {
         // Get token from cookie
-        const token = req.cookies.token;
+        // const token = req.cookies.token;
 
-        if (!token) {
-            return res.status(401).json({ message: "Authentication required" });
+        // if (!token) {
+        //     return res.status(401).json({ message: "Authentication required" });
+        // }
+        const {Authorization} = req.headers
+        if(!Authorization){
+            return res.status(401).json({message:"You must have logged in"})
         }
+        const token = Authorization.replace("Bearer ","")
 
         try {
             // Verify token
