@@ -8,14 +8,21 @@ export const authUser = async (req, res, next) => {
         // if (!token) {
         //     return res.status(401).json({ message: "Authentication required" });
         // }
-        const {Authorization} = req.headers
-        console.log("Authorization",Authorization);
+        // const {Authorization} = req.headers
+        // console.log("Authorization",Authorization);
         
-        if(!Authorization){
-            return res.status(401).json({message:"You must have logged in"})
+        // if(!Authorization){
+        //     return res.status(401).json({message:"You must have logged in"})
+        // }
+        // const token = Authorization.replace("Bearer ","")
+        const authorization = req.headers.authorization; // Lowercase key
+        console.log("Authorization Header: ", authorization);
+        
+        if (!authorization) {
+            return res.status(401).json({ message: "You must be logged in" });
         }
-        const token = Authorization.replace("Bearer ","")
-
+        const token = authorization.replace("Bearer ", "");
+        console.log("Extracted Token: ", token);
         try {
             // Verify token
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
