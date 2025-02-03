@@ -1,7 +1,7 @@
 import Admin from "../models/admin.model.js";
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
-import { uploadToCloudinary } from "../utils/cloudinary.js";
+import { deleteFromCloudinary, uploadToCloudinary } from "../utils/cloudinary.js";
 import User from "../models/user.model.js";
 
 //admin signup
