@@ -5,7 +5,7 @@ import upload from "../utils/multer.js";
 
 const router = express.Router();
 //create admin 
-router.post("/create-admin", isAdmin, adminSignup);
+router.post("/create-admin", adminSignup);
 //login admin
 router.post("/login-admin", adminLogin);
 //reset password
